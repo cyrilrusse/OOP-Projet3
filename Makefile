@@ -1,5 +1,5 @@
 
-OBJ = main.o controller.o view.o
+OBJ = main.o controller.o view.o projectile.o
 CC = g++
 EXEC = Pooyan
 FLAGS = `sdl2-config --libs --cflags` -std=c++17 -Wall -Wextra -lm
@@ -15,6 +15,9 @@ controller.o : controller.cpp controller.hpp
 
 view.o : view.cpp view.hpp
 	$(CC) -c view.cpp $(FLAGS)
+
+projectile.o : projectile.cpp projectile.hpp
+	$(CC) -c projectile.cpp $(FLAGS)
 
 
 clean:

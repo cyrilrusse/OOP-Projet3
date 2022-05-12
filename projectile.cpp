@@ -1,15 +1,19 @@
 #include "projectile.hpp"
 #include "math.h"
 
+// void Projectile::next_position(){
+    
+// }
+
 Arrow::Arrow(int pos_x, int pos_y){
     position_x = pos_x;
     position_y = pos_y;
     size_x = 20;
     size_y = 10;
+    angle = 5;
     velocity_x = 250*tan(angle);
     velocity_y = 250*sin(angle);
     masse = 5;
-    angle = 5;
     cross_area = 1;
 }
 
