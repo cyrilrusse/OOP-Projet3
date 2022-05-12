@@ -1,3 +1,6 @@
+#ifndef _VIEW_HPP_
+#define _VIEW_HPP_
+
 #include <SDL2/SDL.h>
 
 #define HEIGHT 580
@@ -21,3 +24,5 @@ public:
     void show();
     void closeView();
 };
+
+#endif

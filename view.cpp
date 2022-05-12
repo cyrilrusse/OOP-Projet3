@@ -55,7 +55,7 @@ void View::setBackground(){
 
 void View::show(){
     SDL_RenderPresent(rend);
-    // 30 frame per second
+    // 30 frames per second
     SDL_Delay(1000 / 30);
 }
 
