@@ -1,30 +1,56 @@
 #include "projectile.hpp"
-#include "math.h"
+#define AIR_DENSITY 1
+#define DRAG_COEF 0.001
 
 // void Projectile::next_position(){
     
 // }
-
-Arrow::Arrow(int pos_x, int pos_y){
+Projectile::Projectile(int pos_x, int pos_y){
     position_x = pos_x;
     position_y = pos_y;
-    size_x = 20;
-    size_y = 10;
-    angle = 5;
-    velocity_x = 250*tan(angle);
-    velocity_y = 250*sin(angle);
-    masse = 5;
-    cross_area = 1;
 }
 
-Rock::Rock(int pos_x, int pos_y){
-    position_x = pos_x;
-    position_y = pos_y;
+double Projectile::calc_acc(){
+    double norme_velocity = sqrt(velocity_x*velocity_x+velocity_y*velocity_y);
+    double drag_force = (1./2)*AIR_DENSITY*cross_area*DRAG_COEF*norme_velocity;
+    if(velocity_y>0)
+        drag_force = -drag_force;
+    return drag_force/masse;
+}
+
+void Projectile::next_position(){
+    double acc = calc_acc();
+    velocity_y += acc;
+    position_x += velocity_x;
+    position_y += velocity_y;
+}
+
+
+Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y)
+{
+    meat = false;
+    size_x = 20;
+    size_y = 10;
+    angle = 185;
+    masse = 5;
+    cross_area = 1;
+    velocity_x = 500 * cos(angle * M_PI / 180);
+    velocity_y = 500 * sin(angle * M_PI / 180);
+}
+
+void Arrow::arrow_meat(){
+    meat = true;
+    masse = 30;
+    cross_area = 10;
+}
+
+Rock::Rock(int pos_x, int pos_y) : Projectile(pos_x, pos_y)
+{
     size_x = 15;
     size_y = 15;
     masse = 30;
-    angle = 50;
+    angle = -50;
     cross_area = 1;
-    velocity_x = 250 * tan(angle);
-    velocity_y = 250 * sin(angle);
+    velocity_x = 250 * cos(angle * M_PI / 180);
+    velocity_y = 250 * sin(angle * M_PI / 180);
 }

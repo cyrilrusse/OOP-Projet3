@@ -3,6 +3,7 @@
 
 #include "view.hpp"
 #include "controller.hpp"
+#include "projectile.hpp"
 
 int main(){
     View view;
@@ -17,6 +18,7 @@ int main(){
     }
 
     view.closeView();
+
 
     return 0;
 }
