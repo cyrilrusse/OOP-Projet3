@@ -3,6 +3,7 @@
 Model::Model(){
     Wolf create_wolf;
     wolf_array.push_back(create_wolf);
+    timing_meat = 0;
 }
 
 void Model::moveMamaPig(int direction){

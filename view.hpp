@@ -35,6 +35,7 @@ private:
     SDL_Texture *text_wolf_falling, *text_wolf_free_falling, *text_rock;
     SDL_Texture *text_mama_pig, *text_arrow, *text_meaty_arrow, *text_balloon;
     int nbr_of_fps;
+    bool meat_appeared;
 
 public:
     //Constructor
@@ -46,6 +47,9 @@ public:
     void show();
     void closeView();
     void rendMamaPig(int x, int y);
+    void rendMeat(int x, int y);
+    void setMeat_appeared(bool MA){meat_appeared=MA;};
+    bool getMeat_appeared(){return meat_appeared;};
 };
 
 #endif

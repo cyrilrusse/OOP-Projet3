@@ -13,6 +13,7 @@ class Model{
         vector <Wolf> wolf_array;
         vector <Rock> rock_array;
         Arrow arrow = Arrow(0,0);//à changer
+        int timing_meat;
     public:
         //Constructor
         Model();
@@ -25,6 +26,8 @@ class Model{
         Arrow getArrow(){return arrow;};
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
+        int getTimingmeat(){return timing_meat;};
+        void setTimingmeat(int TM){timing_meat =TM;};
 };
 
 

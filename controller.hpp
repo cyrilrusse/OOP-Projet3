@@ -15,6 +15,7 @@ private:
     View view = View(NBR_OF_FPS);
     Model model;
 
+
 public:
     //Constructor
     Controller();
