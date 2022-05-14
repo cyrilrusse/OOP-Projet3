@@ -18,6 +18,10 @@ class Projectile{
         Projectile(int pos_x, int pos_y);
         double calc_acc();
         void next_position();
+        int getPosx(){return position_x;};
+        int getPosy(){return position_y;};
+        int getSizex(){return size_x;};
+        int getSizey(){return size_y;};
 };
 
 class Arrow: public Projectile{

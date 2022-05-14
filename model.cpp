@@ -8,3 +8,7 @@ Model::Model(MamaPig MP, Wolf W, Arrow A){
     wolf_array.push_back(W);
     arrow_array = A;
 }
+
+// void Model::mouveMamaPig(bool direction){
+//     //
+// }

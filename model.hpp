@@ -19,6 +19,7 @@ class Model{
         vector<Wolf> get_wolf_array() { return wolf_array; };
         vector<Rock> get_rock_array() { return rock_array; };
         Arrow get_arrow(){return arrow_array;};
+        void mouveMamaPig(bool direction);
 };
 
 
