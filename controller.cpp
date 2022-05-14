@@ -47,7 +47,6 @@ void Controller::game(){
         model.setTimingmeat(model.getTimingmeat()+1);
     }
 
-
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();
 }

@@ -5,6 +5,7 @@ Character::Character(int x, int y){
     position_y = y;
 }
 
+//Wolf definitions
 Wolf::Wolf():Character(WOLF_INIT_POS){
     switch ((rand()%5)+1){
     case 1:
@@ -26,6 +27,44 @@ Wolf::Wolf():Character(WOLF_INIT_POS){
     status = WALKING;
 }
 
+void Wolf::computeNewPosition(double time){
+    if(status == WALKING){
+        ++step %= 2;
+        position_x += WOLF_VELOCITY * time;
+        if(position_x >= falling_pos){
+            position_x = falling_pos;
+            status = BALLON_FALL;
+        }
+        return;
+    }
+    if(status == BALLON_FALL){
+        position_y += WOLF_FALLING_VELOCITY * time;
+        if(position_y >= WOLF_GROUND_POSITION){
+            position_y = WOLF_GROUND_POSITION;
+            status = WALKING_WITHOUT_BALLOON;
+        }
+        return;
+    }
+    if(status == WALKING_WITHOUT_BALLOON){
+        ++step %= 2;
+        position_x += WOLF_VELOCITY * time;
+        if(position_x >= WOLF_HOUSE_REACHED)
+            status = REACHED_HOUSE;
+        return;
+    }
+    if(status == FREE_FALLING){
+        position_y += WOLD_FREE_FALLING_VELOCITY * time;
+        if (position_y >= WOLF_GROUND_POSITION){
+            position_y = WOLF_GROUND_POSITION;
+            status = DISAPEAR;
+        }
+        return;
+    }
+
+}
+
+
+//MamaPig definitions
 MamaPig::MamaPig():Character(MAMAPIG_INIT_POS){};
 
 void MamaPig::computeNewPosition(double time){
@@ -40,3 +79,4 @@ void MamaPig::computeNewPosition(double time){
             position_y = MAMAPIG_BOUND_MAX;
     }
 }
+

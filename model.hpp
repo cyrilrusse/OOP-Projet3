@@ -25,10 +25,11 @@ class Model{
         vector<Wolf> getWolfArray() {return wolf_array;};
         vector<Rock> getRockArray() {return rock_array;};
         Arrow getArrow(){return arrow;};
+        int getTimingmeat(){return timing_meat;};
+
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
         void addWolf();
-        int getTimingmeat(){return timing_meat;};
         void setTimingmeat(int TM){timing_meat =TM;};
 };
 

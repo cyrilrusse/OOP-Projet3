@@ -8,14 +8,16 @@
 
 //WOLF constant
 #define WOLF_INIT_POS 50, 82
-#define WOLF_VELOCITY 50, 0
-#define WOLF_FALLING_VELOCITY 0, 50
-#define WOLD_FREE_FALLING_VELOCITY 0, 100
+#define WOLF_VELOCITY 50
+#define WOLF_FALLING_VELOCITY 50
+#define WOLD_FREE_FALLING_VELOCITY 100
 #define WOLF_FALLING_POS1 75
 #define WOLF_FALLING_POS2 125
 #define WOLF_FALLING_POS3 150
 #define WOLF_FALLING_POS4 200
 #define WOLF_FALLING_POS5 250
+#define WOLF_GROUND_POSITION 445
+#define WOLF_HOUSE_REACHED 420
 
 //MAMAPIG constant
 #define MAMAPIG_INIT_POS 400, 240
@@ -32,7 +34,10 @@ enum mama_pig_movement{
 enum wolf_status{
     WALKING,
     BALLON_FALL,
-    FREE_FALLING
+    FREE_FALLING,
+    WALKING_WITHOUT_BALLOON,
+    DISAPEAR,
+    REACHED_HOUSE
 };
 
 class Character{
@@ -51,12 +56,15 @@ class Wolf : public Character{
 private:
     wolf_status status;
     int falling_pos;
+    int step = 0;
 public:
     //Constructor
     Wolf();
 
     //Access
     wolf_status getStatus(){return status;}
+
+    void computeNewPosition(double time);
 };
 
 class MamaPig : public Character{
