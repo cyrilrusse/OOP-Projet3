@@ -13,7 +13,8 @@ private:
     SDL_Event event;
     bool ingame;
     View view = View(NBR_OF_FPS);
-    Model model;
+    Model model = Model(NBR_OF_FPS);
+    double time_since_last_wolf;
 
 public:
     //Constructor
@@ -26,6 +27,7 @@ public:
     void game();
     void endGame();
     void computeObjectsPosition();
+    void manageObjects()
 };
 
 #endif

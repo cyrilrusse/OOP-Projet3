@@ -2,6 +2,8 @@
 
 Controller::Controller(){
     ingame = true;
+    time_since_last_wolf = 0;
+    model.addWolf();
 }
 
 void Controller::handleInputs(){
@@ -11,7 +13,7 @@ void Controller::handleInputs(){
             ingame = false;
             break;
         }
-        switch (event.key.keysym.sym){ 
+        switch (event.key.keysym.sym){
             case SDLK_UP:
                 model.moveMamaPig(1);
                 mama_moved = true;
@@ -39,6 +41,14 @@ void Controller::game(){
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();
+}
+
+void Controller::manageObjects(){
+    time_since_last_wolf += 1./NBR_OF_FPS;
+    if(time_since_last_wolf>3){
+        model.addWolf();
+        time_since_last_wolf = 0;
+    }
 }
 
 void Controller::endGame(){

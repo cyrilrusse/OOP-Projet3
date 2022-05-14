@@ -66,9 +66,6 @@ void View::setBackground(){
 }
 
 void View::show(){
-    // SDL_Rect rect_pour_image = {5, 5, MAMAPIG_DIMENSIONS};
-    // SDL_RenderCopy(rend, text_mama_pig, NULL, &rect_pour_image);
-
     SDL_RenderPresent(rend);
     SDL_Delay(1000 / nbr_of_fps);
 }

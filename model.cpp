@@ -1,8 +1,9 @@
 #include "model.hpp"
 
-Model::Model(){
+Model::Model(int fps){
     Wolf create_wolf;
     wolf_array.push_back(create_wolf);
+    nbr_of_fps = fps;
 }
 
 void Model::moveMamaPig(int direction){
@@ -15,5 +16,9 @@ void Model::moveMamaPig(int direction){
 }
 
 void Model::computeMamaPigPosition(){
-    mama_pig.computeNewPosition(1./30);
+    mama_pig.computeNewPosition(1./nbr_of_fps);
+}
+
+void Model::addWolf(){
+    wolf_array.push_back(Wolf());
 }

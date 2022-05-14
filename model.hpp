@@ -13,9 +13,10 @@ class Model{
         vector <Wolf> wolf_array;
         vector <Rock> rock_array;
         Arrow arrow = Arrow(0,0);//à changer
+        int nbr_of_fps;
     public:
         //Constructor
-        Model();
+        Model(int fps);
 
         //Access
         int getMamaPigPosX(){return mama_pig.getPosx();};
@@ -25,6 +26,7 @@ class Model{
         Arrow getArrow(){return arrow;};
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
+        void addWolf();
 };
 
 
