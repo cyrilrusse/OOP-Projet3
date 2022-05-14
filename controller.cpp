@@ -1,8 +1,11 @@
 #include "controller.hpp"
+#include "character.hpp"
 
 Controller::Controller(){
     ingame = true;
 }
+
+
 
 void Controller::handleInputs(){
     while (SDL_PollEvent(&event)){
@@ -10,6 +13,8 @@ void Controller::handleInputs(){
         case SDL_QUIT:
             ingame = false;
             break;
+        case SDLK_UP:
+            
 
         default:
             break;

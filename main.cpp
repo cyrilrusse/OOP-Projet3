@@ -4,6 +4,7 @@
 #include "view.hpp"
 #include "controller.hpp"
 #include "projectile.hpp"
+#include "model.hpp"
 
 #define NBR_OF_FPS 30
 
