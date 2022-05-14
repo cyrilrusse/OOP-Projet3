@@ -38,6 +38,15 @@ void Controller::game(){
     handleInputs();
 
     model.computeMamaPigPosition();
+    if(model.getTimingmeat() >= 270){ 
+        view.rendMeat(400, 170);
+        view.setMeat_appeared(true);
+        
+        }
+    if(model.getTimingmeat() < 270 && !view.getMeat_appeared()){
+        model.setTimingmeat(model.getTimingmeat()+1);
+    }
+
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();

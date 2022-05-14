@@ -4,6 +4,7 @@ Model::Model(int fps){
     Wolf create_wolf;
     wolf_array.push_back(create_wolf);
     nbr_of_fps = fps;
+    timing_meat = 0;
 }
 
 void Model::moveMamaPig(int direction){
