@@ -66,8 +66,8 @@ void View::setBackground(){
 }
 
 void View::show(){
-    SDL_Rect rect_pour_image = {5, 5, MAMAPIG_DIMENSIONS};
-    SDL_RenderCopy(rend, text_mama_pig, NULL, &rect_pour_image);
+    // SDL_Rect rect_pour_image = {5, 5, MAMAPIG_DIMENSIONS};
+    // SDL_RenderCopy(rend, text_mama_pig, NULL, &rect_pour_image);
 
     SDL_RenderPresent(rend);
     SDL_Delay(1000 / nbr_of_fps);
@@ -76,4 +76,9 @@ void View::show(){
 void View::closeView(){
     SDL_DestroyWindow(window);
     SDL_Quit();
+}
+
+void View::rendMamaPig(int x, int y){
+    SDL_Rect dimension = {x, y, MAMAPIG_DIMENSIONS};
+    SDL_RenderCopy(rend, text_mama_pig, NULL, &dimension);
 }

@@ -28,3 +28,15 @@ Wolf::Wolf():Character(WOLF_INIT_POS){
 
 MamaPig::MamaPig():Character(MAMAPIG_INIT_POS){};
 
+void MamaPig::computeNewPosition(double time){
+    if(direction==UP && position_y > MAMAPIG_BOUND_MIN){
+        position_y -= MAMAPIG_MOVEMENT_SPEED*time;
+        if(position_y < MAMAPIG_BOUND_MIN)
+            position_y = MAMAPIG_BOUND_MIN;
+    }
+    else if(direction == DOWN && position_y < MAMAPIG_BOUND_MAX){
+        position_y += MAMAPIG_MOVEMENT_SPEED*time;
+        if(position_y > MAMAPIG_BOUND_MAX)
+            position_y = MAMAPIG_BOUND_MAX;
+    }
+}

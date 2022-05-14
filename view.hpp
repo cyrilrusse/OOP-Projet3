@@ -37,10 +37,15 @@ private:
     int nbr_of_fps;
 
 public:
+    //Constructor
     View(int fps);
+
+    //Setter
     void setBackground();
+
     void show();
     void closeView();
+    void rendMamaPig(int x, int y);
 };
 
 #endif

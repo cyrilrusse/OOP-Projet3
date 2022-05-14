@@ -1,27 +1,18 @@
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include <ctime>
+#include <iostream>
 
-#include "view.hpp"
 #include "controller.hpp"
-#include "projectile.hpp"
-#include "model.hpp"
-
-#define NBR_OF_FPS 30
 
 int main(){
-    View view(NBR_OF_FPS);
+    srand(time(NULL));
     Controller controller;
     
-    while (controller.inGame()){
-        view.setBackground();
+    while (controller.inGame())
+        controller.game();
 
-        controller.handleInputs();
-
-        view.show();
-    }
-
-    view.closeView();
-
+    controller.endGame();
 
     return 0;
 }

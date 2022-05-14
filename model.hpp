@@ -9,17 +9,22 @@ using std::vector;
 
 class Model{
     private:
-        MamaPig pig;
+        MamaPig mama_pig;
         vector <Wolf> wolf_array;
         vector <Rock> rock_array;
-        Arrow arrow_array;
+        Arrow arrow = Arrow(0,0);//à changer
     public:
-        Model(MamaPig MP, Wolf W, Arrow A);
-        MamaPig get_mamapig(){return pig;};
-        vector<Wolf> get_wolf_array() { return wolf_array; };
-        vector<Rock> get_rock_array() { return rock_array; };
-        Arrow get_arrow(){return arrow_array;};
-        void mouveMamaPig(bool direction);
+        //Constructor
+        Model();
+
+        //Access
+        int getMamaPigPosX(){return mama_pig.getPosx();};
+        int getMamaPigPosY() { return mama_pig.getPosy(); };
+        vector<Wolf> getWolfArray() {return wolf_array;};
+        vector<Rock> getRockArray() {return rock_array;};
+        Arrow getArrow(){return arrow;};
+        void moveMamaPig(int direction);
+        void computeMamaPigPosition();
 };
 
 

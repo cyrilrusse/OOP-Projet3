@@ -21,7 +21,13 @@
 #define MAMAPIG_INIT_POS 400, 240
 #define MAMAPIG_BOUND_MIN 170
 #define MAMAPIG_BOUND_MAX 405
+#define MAMAPIG_MOVEMENT_SPEED 100
 
+enum mama_pig_movement{
+    UP,
+    NONE,
+    DOWN
+};
 
 enum wolf_status{
     WALKING,
@@ -30,7 +36,7 @@ enum wolf_status{
 };
 
 class Character{
-private:
+protected:
     int position_x, position_y;
 public:
     //Constructor
@@ -38,7 +44,7 @@ public:
 
     //Access
     int getPosx(){return position_x;}
-    int getPosy() { return position_y;}
+    int getPosy(){return position_y;}
 };
 
 class Wolf : public Character{
@@ -56,10 +62,15 @@ public:
 class MamaPig : public Character{
 private:
     Arrow *loaded_arrow;
-
+    mama_pig_movement direction;
 public:
     //Constructor
     MamaPig();
+
+    //Setter
+    void setDirection(mama_pig_movement new_direction){direction = new_direction;}
+
+    void computeNewPosition(double time);
 };
 
 #endif
