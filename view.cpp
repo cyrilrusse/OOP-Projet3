@@ -5,7 +5,7 @@
 // SDL_Texture *background = SDL_CreateTextureFromSurface(rend, surface);
 // SDL_QueryTexture(background, NULL, NULL, &dest.w, &dest.h);
 
-View::View(){
+View::View(int fps){
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
         printf("error initializing SDL: %s\n", SDL_GetError());
 
@@ -34,6 +34,8 @@ View::View(){
     house.w = 100;
     house.x = 450;
     house.y = 405;
+
+    nbr_of_fps = fps;
 }
 
 void View::setBackground(){
@@ -55,8 +57,7 @@ void View::setBackground(){
 
 void View::show(){
     SDL_RenderPresent(rend);
-    // 30 frames per second
-    SDL_Delay(1000 / 30);
+    SDL_Delay(1000 / nbr_of_fps);
 }
 
 void View::closeView(){

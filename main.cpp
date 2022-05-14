@@ -5,8 +5,10 @@
 #include "controller.hpp"
 #include "projectile.hpp"
 
+#define NBR_OF_FPS 30
+
 int main(){
-    View view;
+    View view(NBR_OF_FPS);
     Controller controller;
     
     while (controller.inGame()){
