@@ -1,9 +1,6 @@
 #include "view.hpp"
 
-// SDL_Surface *surface = SDL_GetWindowSurface(window);
-// SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, BLUE));
-// SDL_Texture *background = SDL_CreateTextureFromSurface(rend, surface);
-// SDL_QueryTexture(background, NULL, NULL, &dest.w, &dest.h);
+#include <iostream>
 
 View::View(int fps){
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
@@ -36,6 +33,19 @@ View::View(int fps){
     house.y = 405;
 
     nbr_of_fps = fps;
+
+    //texture loading
+    text_wolf_walking1 = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_WalkingLeft_Step1.bmp"));
+    text_wolf_walking2 = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_WalkingLeft_Step2.bmp"));
+    text_wolf_walking1_balloon = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_WalkingLeft_Balloon_Step1.bmp"));
+    text_wolf_walking2_balloon = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_WalkingLeft_Balloon_Step2.bmp"));
+    text_wolf_falling = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_Falling_Balloon.bmp"));
+    text_wolf_free_falling = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_Free_Falling.bmp"));
+    text_mama_pig = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/PigMom.bmp"));
+    text_arrow = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Arrow.bmp"));
+    text_meaty_arrow = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Meat.bmp"));
+    text_balloon = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Balloon.bmp"));
+    text_rock = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Rock.bmp"));
 }
 
 void View::setBackground(){
@@ -56,6 +66,9 @@ void View::setBackground(){
 }
 
 void View::show(){
+    SDL_Rect rect_pour_image = {5, 5, MAMAPIG_DIMENSIONS};
+    SDL_RenderCopy(rend, text_mama_pig, NULL, &rect_pour_image);
+
     SDL_RenderPresent(rend);
     SDL_Delay(1000 / nbr_of_fps);
 }

@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 
+#include "character.hpp"
+
 //Window dimensions
 #define HEIGHT 580
 #define WEIGHT 550
@@ -14,11 +16,24 @@
 #define GROUNDBROWN 128, 96, 20
 #define GREY 220, 220, 220
 
+//Texture dimensions
+#define MAMAPIG_DIMENSIONS 30, 50
+#define WOLF_DIMENSIONS 30, 35
+#define BALLON_DIMENSIONS 20, 10
+#define ARROW_DIMENSIONS 20, 10
+#define MEATY_ARROW_DIMENSIONS 20, 10
+#define ROCK_DIMENSIONS 15, 15
+
+
 class View{
 private:
     SDL_Window* window;
     SDL_Renderer *rend;
     SDL_Rect ledge, column, ground, house;
+    SDL_Texture *text_wolf_walking1, *text_wolf_walking2;
+    SDL_Texture *text_wolf_walking1_balloon, *text_wolf_walking2_balloon;
+    SDL_Texture *text_wolf_falling, *text_wolf_free_falling, *text_rock;
+    SDL_Texture *text_mama_pig, *text_arrow, *text_meaty_arrow, *text_balloon;
     int nbr_of_fps;
 
 public:

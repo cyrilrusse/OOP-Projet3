@@ -6,6 +6,7 @@
 
 #include "projectile.hpp"
 
+//WOLF constant
 #define WOLF_INIT_POS 50, 82
 #define WOLF_VELOCITY 50, 0
 #define WOLF_FALLING_VELOCITY 0, 50
@@ -16,10 +17,10 @@
 #define WOLF_FALLING_POS4 200
 #define WOLF_FALLING_POS5 250
 
+//MAMAPIG constant
 #define MAMAPIG_INIT_POS 400, 240
 #define MAMAPIG_BOUND_MIN 170
 #define MAMAPIG_BOUND_MAX 405
-
 
 
 enum wolf_status{
@@ -32,7 +33,12 @@ class Character{
 private:
     int position_x, position_y;
 public:
+    //Constructor
     Character(int x, int y);
+
+    //Access
+    int getPosx(){return position_x;}
+    int getPosy() { return position_y;}
 };
 
 class Wolf : public Character{
@@ -42,6 +48,7 @@ private:
 public:
     //Constructor
     Wolf();
+
     //Access
     wolf_status getStatus(){return status;}
 };
@@ -49,15 +56,10 @@ public:
 class MamaPig : public Character{
 private:
     Arrow *loaded_arrow;
-    SDL_Texture *mama_pig_texture;
-    SDL_Rect mama_pig_image_dimension;
+
 public:
     //Constructor
-    MamaPig(SDL_Renderer *rend);
-
-    //Access
-    
-    SDL_Texture *showMamaPig(SDL_Renderer *rend);
+    MamaPig();
 };
 
 #endif
