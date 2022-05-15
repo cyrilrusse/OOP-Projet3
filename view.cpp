@@ -68,7 +68,7 @@ void View::setBackground(){
 
 void View::show(){
     SDL_RenderPresent(rend);
-    SDL_Delay(1000 / nbr_of_fps);
+    SDL_Delay(1000. / nbr_of_fps);
 }
 
 void View::closeView(){
@@ -118,4 +118,8 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
 void View::rendArrow(int x, int y){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
     SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
+}
+
+void View::rendNbrPig(int nbr_pig){
+    
 }

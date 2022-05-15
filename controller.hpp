@@ -18,7 +18,6 @@ private:
     Model model = Model(NBR_OF_FPS);
     double time_since_last_wolf;
 
-
 public:
     //Constructor
     Controller();

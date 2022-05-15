@@ -16,6 +16,7 @@ class Model{
         int nbr_of_fps;
         int timing_meat;
         int nbr_of_little_pig_eaten;
+        Uint32 time_last_frame;
     public:
         //Constructor
         Model(int fps);

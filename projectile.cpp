@@ -19,14 +19,13 @@ double Projectile::calc_acc(){
 
 void Projectile::next_position(){
     double acc = calc_acc();
-    velocity_y += acc/2;
+    velocity_y += acc/30;
     position_x += velocity_x/30;
     position_y += velocity_y/30;
 }
 
 
-Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y)
-{
+Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){
     meat = false;
     size_x = 20;
     size_y = 10;

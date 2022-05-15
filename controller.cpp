@@ -43,7 +43,7 @@ void Controller::game(){
         view.rendMeat(400, 170);
         view.setMeatAppeared(true);
         
-        }
+    }
     if(model.getTimingmeat() < 270 && !view.getMeatAppeared()){
         model.setTimingmeat(model.getTimingmeat()+1);
     }
@@ -53,8 +53,7 @@ void Controller::game(){
     if(!model.getArrow()->getLaunch()){ 
         model.getArrow()->setPosX(model.getMamaPigPosX() - 5);
         model.getArrow()->setPosY(model.getMamaPigPosY() +30);
-        }
-
+    }
     else{
         model.getArrow()->next_position();
         std::cout<<model.getArrow()->getPosX()<< " " << model.getArrow()->getVelocityY()<<std::endl;
