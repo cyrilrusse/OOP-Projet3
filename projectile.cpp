@@ -11,15 +11,20 @@ Projectile::Projectile(int pos_x, int pos_y){
     launch = false;
 }
 
-double Projectile::calc_acc(){
+double Projectile::calcDragForce(){
     double norme_velocity = sqrt(velocity_x*velocity_x+velocity_y*velocity_y);
     double drag_force = (1./2)*AIR_DENSITY*cross_area*DRAG_COEF*norme_velocity*norme_velocity;
-    return drag_force/masse;
+
+    return drag_force;
 }
 
 void Projectile::next_position(){
-    double acc = calc_acc();
-    velocity_y += acc/30;
+    angle = atan(velocity_y/velocity_x);
+    double dragForce = calcDragForce();
+    double accX = dragForce*cos(angle+M_PI)/masse;
+    double accY = (dragForce*sin(angle + M_PI) + 500*masse)/masse;
+    velocity_y += accY/30;
+    velocity_x -= accX/30;
     position_x += velocity_x/30;
     position_y += velocity_y/30;
 }

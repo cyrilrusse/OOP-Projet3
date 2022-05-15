@@ -17,13 +17,14 @@ class Projectile{
         bool launch; 
     public:
         Projectile(int pos_x, int pos_y);
-        double calc_acc();
+        double calcDragForce();
         void next_position();
         int getPosX(){return position_x;};
         int getPosY(){return position_y;};
         void setPosX(int PX){position_x = PX;};
         void setPosY(int PY){position_y = PY;};
         double getVelocityY(){return velocity_y;};
+        double getVelocityX() { return velocity_x; };
         int getSizex(){return size_x;};
         int getSizey(){return size_y;};
         bool getLaunch(){return launch;};

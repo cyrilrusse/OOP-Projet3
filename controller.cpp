@@ -56,7 +56,7 @@ void Controller::game(){
     }
     else{
         model.getArrow()->next_position();
-        std::cout<<model.getArrow()->getPosX()<< " " << model.getArrow()->getVelocityY()<<std::endl;
+        std::cout << model.getArrow()->getVelocityX() << " " << model.getArrow()->getVelocityY() << std::endl;
     }
 
     view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY());
