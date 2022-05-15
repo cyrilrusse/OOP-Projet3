@@ -1,6 +1,7 @@
 #ifndef _CONTROLLER_HPP_
 #define _CONTROLLER_HPP_
 #include <SDL2/SDL.h>
+#include <vector>
 
 #include "view.hpp"
 #include "model.hpp"
@@ -29,6 +30,7 @@ public:
     void endGame();
     void computeObjectsPosition();
     void manageObjects();
+    void renderObjects();
 };
 
 #endif

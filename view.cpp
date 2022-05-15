@@ -85,3 +85,33 @@ void View::rendMeat(int x, int y){
     SDL_Rect dimension = {x, y, MEATY_ARROW_DIMENSIONS};
     SDL_RenderCopy(rend, text_meaty_arrow, NULL, &dimension);
 }
+
+void View::rendWolf(wolf_status w_status, int x, int y, int step){
+    SDL_Rect wolf_dimension = {x, y, WOLF_DIMENSIONS};
+    SDL_Rect ballon_dimension = {x+BALLOON_POSITION_FROM_WOLF_X, y+BALLOON_POSITION_FROM_WOLF_Y, BALLON_DIMENSIONS};
+    switch (w_status){
+    case WALKING:
+        if(step==0)
+            SDL_RenderCopy(rend, text_wolf_walking1_balloon, NULL, &wolf_dimension);
+        else
+            SDL_RenderCopy(rend, text_wolf_walking2_balloon, NULL, &wolf_dimension);
+        SDL_RenderCopy(rend, text_balloon, NULL, &ballon_dimension);
+        break;
+    case FREE_FALLING:
+        SDL_RenderCopy(rend, text_wolf_free_falling, NULL, &wolf_dimension);
+        break;
+    case BALLON_FALL:
+        SDL_RenderCopy(rend, text_wolf_falling, NULL, &wolf_dimension);
+        SDL_RenderCopy(rend, text_balloon, NULL, &ballon_dimension);
+        break;
+    case WALKING_WITHOUT_BALLOON:
+        if (step == 0)
+            SDL_RenderCopy(rend, text_wolf_walking1, NULL, &wolf_dimension);
+        else
+            SDL_RenderCopy(rend, text_wolf_walking2, NULL, &wolf_dimension);
+        break;
+    default:
+        break;
+    }
+
+}

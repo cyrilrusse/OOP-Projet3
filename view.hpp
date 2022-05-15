@@ -19,11 +19,14 @@
 //Texture dimensions
 #define MAMAPIG_DIMENSIONS 30, 50
 #define WOLF_DIMENSIONS 30, 35
-#define BALLON_DIMENSIONS 20, 10
+#define BALLON_DIMENSIONS 20, 30
 #define ARROW_DIMENSIONS 20, 10
 #define MEATY_ARROW_DIMENSIONS 20, 10
 #define ROCK_DIMENSIONS 15, 15
 
+//Object relative position from other objects
+#define BALLOON_POSITION_FROM_WOLF_X 15
+#define BALLOON_POSITION_FROM_WOLF_Y -17
 
 class View{
 private:
@@ -50,6 +53,7 @@ public:
     void rendMeat(int x, int y);
     void setMeat_appeared(bool MA){meat_appeared=MA;};
     bool getMeat_appeared(){return meat_appeared;};
+    void rendWolf(wolf_status wolf, int x, int y, int step);
 };
 
 #endif

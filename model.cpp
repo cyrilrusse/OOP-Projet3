@@ -5,6 +5,7 @@ Model::Model(int fps){
     wolf_array.push_back(create_wolf);
     nbr_of_fps = fps;
     timing_meat = 0;
+    nbr_of_little_pig_eaten = 0;
 }
 
 void Model::moveMamaPig(int direction){
@@ -22,4 +23,21 @@ void Model::computeMamaPigPosition(){
 
 void Model::addWolf(){
     wolf_array.push_back(Wolf());
+}
+
+void Model::computeWolfsPosition(){
+    vector<int> wolf_to_remove;
+    int i = 0;
+    for(auto &wolf : wolf_array){
+        wolf.computeNewPosition(1./nbr_of_fps);
+        if(wolf.getStatus()==REACHED_HOUSE){
+            nbr_of_little_pig_eaten++;
+            wolf_to_remove.push_back(i);
+        }
+        else if(wolf.getStatus()==DISAPEAR)
+            wolf_to_remove.push_back(i);
+        i++;
+    }
+    for(i = wolf_to_remove.size(); i>0; i--)
+        wolf_array.erase(wolf_array.begin()+wolf_to_remove[i-1]);
 }

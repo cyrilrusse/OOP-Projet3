@@ -15,6 +15,7 @@ class Model{
         Arrow arrow = Arrow(0,0);//à changer
         int nbr_of_fps;
         int timing_meat;
+        int nbr_of_little_pig_eaten;
     public:
         //Constructor
         Model(int fps);
@@ -30,6 +31,7 @@ class Model{
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
         void addWolf();
+        void computeWolfsPosition();
         void setTimingmeat(int TM){timing_meat =TM;};
 };
 

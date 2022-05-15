@@ -7,7 +7,7 @@
 #include "projectile.hpp"
 
 //WOLF constant
-#define WOLF_INIT_POS 50, 82
+#define WOLF_INIT_POS 50, 65
 #define WOLF_VELOCITY 50
 #define WOLF_FALLING_VELOCITY 50
 #define WOLD_FREE_FALLING_VELOCITY 100
@@ -63,6 +63,7 @@ public:
 
     //Access
     wolf_status getStatus(){return status;}
+    int getStep(){if(status==WALKING || status==WALKING_WITHOUT_BALLOON)return step;return -1;}
 
     void computeNewPosition(double time);
 };

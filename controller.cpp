@@ -3,13 +3,12 @@
 Controller::Controller(){
     ingame = true;
     time_since_last_wolf = 0;
-    model.addWolf();
 }
 
 void Controller::handleInputs(){
     bool mama_moved = false;
     while (SDL_PollEvent(&event)){
-        if(event.type == SDL_QUIT){ 
+        if(event.type == SDL_QUIT){
             ingame = false;
             break;
         }
@@ -46,17 +45,27 @@ void Controller::game(){
     if(model.getTimingmeat() < 270 && !view.getMeat_appeared()){
         model.setTimingmeat(model.getTimingmeat()+1);
     }
+    manageObjects();
+    renderObjects();
 
-    view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();
 }
 
+void Controller::renderObjects(){
+    std::vector<Wolf> wolfs = model.getWolfArray();
+    for(auto &wolf : wolfs)
+        view.rendWolf(wolf.getStatus(), wolf.getPosx(), wolf.getPosy(), wolf.getStep());
+
+    view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
+}
+
 void Controller::manageObjects(){
-    time_since_last_wolf += 1./NBR_OF_FPS;
-    if(time_since_last_wolf>3){
+    time_since_last_wolf += 1;
+    if(time_since_last_wolf>3*NBR_OF_FPS){
         model.addWolf();
         time_since_last_wolf = 0;
     }
+    model.computeWolfsPosition();
 }
 
 void Controller::endGame(){
