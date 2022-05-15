@@ -24,7 +24,7 @@ class Model{
         int getMamaPigPosY() { return mama_pig.getPosy(); };
         vector<Wolf> getWolfArray() {return wolf_array;};
         vector<Rock> getRockArray() {return rock_array;};
-        Arrow getArrow(){return arrow;};
+        Arrow *getArrow(){return &arrow;};
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
         void addWolf();

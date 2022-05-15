@@ -23,6 +23,8 @@ void Controller::handleInputs(){
                 mama_moved = true;
                 break;
             case SDLK_SPACE:
+                model.getArrow()->setLaunch(true);
+                break;
                 
             default:
                 break;
@@ -40,13 +42,23 @@ void Controller::game(){
     model.computeMamaPigPosition();
     if(model.getTimingmeat() >= 270){ 
         view.rendMeat(400, 170);
-        view.setMeat_appeared(true);
+        view.setMeatAppeared(true);
         
         }
-    if(model.getTimingmeat() < 270 && !view.getMeat_appeared()){
+    if(model.getTimingmeat() < 270 && !view.getMeatAppeared()){
         model.setTimingmeat(model.getTimingmeat()+1);
     }
+    if(!model.getArrow()->getLaunch()){ 
+        model.getArrow()->setPosX(model.getMamaPigPosX() - 5);
+        model.getArrow()->setPosY(model.getMamaPigPosY() +30);
+        }
 
+    else{
+        model.getArrow()->next_position();
+        std::cout<<model.getArrow()->getPosX()<< " " << model.getArrow()->getVelocityY()<<std::endl;
+    }
+
+    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY());
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();

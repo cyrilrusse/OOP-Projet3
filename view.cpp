@@ -85,3 +85,8 @@ void View::rendMeat(int x, int y){
     SDL_Rect dimension = {x, y, MEATY_ARROW_DIMENSIONS};
     SDL_RenderCopy(rend, text_meaty_arrow, NULL, &dimension);
 }
+
+void View::rendArrow(int x, int y){
+    SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
+    SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
+}

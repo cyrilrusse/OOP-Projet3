@@ -14,14 +14,20 @@ class Projectile{
         double velocity_y;
         double angle;
         int cross_area;
+        bool launch; 
     public:
         Projectile(int pos_x, int pos_y);
         double calc_acc();
         void next_position();
-        int getPosx(){return position_x;};
-        int getPosy(){return position_y;};
+        int getPosX(){return position_x;};
+        int getPosY(){return position_y;};
+        void setPosX(int PX){position_x = PX;};
+        void setPosY(int PY){position_y = PY;};
+        double getVelocityY(){return velocity_y;};
         int getSizex(){return size_x;};
         int getSizey(){return size_y;};
+        bool getLaunch(){return launch;};
+        void setLaunch(bool L){launch = L;};
 };
 
 class Arrow: public Projectile{
