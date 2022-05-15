@@ -113,6 +113,7 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
     default:
         break;
     }
+}
 
 void View::rendArrow(int x, int y){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
