@@ -114,4 +114,7 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
         break;
     }
 
+void View::rendArrow(int x, int y){
+    SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
+    SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
 }

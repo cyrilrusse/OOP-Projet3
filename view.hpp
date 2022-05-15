@@ -51,9 +51,10 @@ public:
     void closeView();
     void rendMamaPig(int x, int y);
     void rendMeat(int x, int y);
-    void setMeat_appeared(bool MA){meat_appeared=MA;};
-    bool getMeat_appeared(){return meat_appeared;};
     void rendWolf(wolf_status wolf, int x, int y, int step);
+    void rendArrow(int x, int y);
+    void setMeatAppeared(bool MA){meat_appeared=MA;};
+    bool getMeatAppeared(){return meat_appeared;};
 };
 
 #endif

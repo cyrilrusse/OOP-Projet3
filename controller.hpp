@@ -6,6 +6,7 @@
 #include "view.hpp"
 #include "model.hpp"
 #include "character.hpp"
+#include <iostream>
 
 #define NBR_OF_FPS 30
 
