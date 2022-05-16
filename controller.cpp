@@ -101,7 +101,7 @@ void Controller::manageRocks(){
     std::vector<Wolf> wolfs = model.getWolfArray();
     for(auto &wolf : wolfs){
         if(wolf.getPosy() == 230 || wolf.getReload()==90){
-            model.getRockArray().push_back(Rock(wolf.getPosx()+30,wolf.getPosy()));
+            model.addRock(Rock(wolf.getPosx()+30,wolf.getPosy()));
             wolf.setReload(0);
             std::cout<<"oui"<<std::endl;
         }

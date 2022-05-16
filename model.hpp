@@ -26,6 +26,7 @@ class Model{
         int getMamaPigPosY() { return mama_pig.getPosy(); };
         vector<Wolf> getWolfArray() {return wolf_array;};
         vector<Rock> getRockArray() {return rock_array;};
+        void addRock(Rock R){rock_array.push_back(R);};
         int getTimingmeat(){return timing_meat;};
         Arrow *getArrow(){return &arrow;};
         int getNbrPigEaten(){return nbr_of_little_pig_eaten;};
