@@ -29,6 +29,7 @@ class Projectile{
         int getSizey(){return size_y;};
         bool getLaunch(){return launch;};
         void setLaunch(bool L){launch = L;};
+        double getAngle(){return angle;};
 };
 
 class Arrow: public Projectile{

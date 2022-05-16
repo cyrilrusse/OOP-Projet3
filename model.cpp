@@ -29,11 +29,11 @@ void Model::addWolf(){
 void Model::computeWolfsPosition(){
     vector<int> wolf_to_remove;
     int i = 0;
-    Uint32 new_time = SDL_GetTicks();
-    Uint32 delta_t = new_time - time_last_frame;
-    std::cout << "delta t: " << delta_t << std::endl;
+    // Uint32 new_time = SDL_GetTicks();
+    // Uint32 delta_t = new_time - time_last_frame;
+    // std::cout << "delta t: " << delta_t << std::endl;
     for(auto &wolf : wolf_array){
-        wolf.computeNewPosition(delta_t/1000.);
+        wolf.computeNewPosition(1./nbr_of_fps);
         if(wolf.getStatus()==REACHED_HOUSE){
             nbr_of_little_pig_eaten++;
             wolf_to_remove.push_back(i);
@@ -44,5 +44,5 @@ void Model::computeWolfsPosition(){
     }
     for(i = wolf_to_remove.size(); i>0; i--)
         wolf_array.erase(wolf_array.begin()+wolf_to_remove[i-1]);
-    time_last_frame = SDL_GetTicks();
+    // time_last_frame = SDL_GetTicks();
 }

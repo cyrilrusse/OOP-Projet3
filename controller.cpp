@@ -59,7 +59,9 @@ void Controller::game(){
         std::cout << model.getArrow()->getVelocityX() << " " << model.getArrow()->getVelocityY() << std::endl;
     }
 
-    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY());
+    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle());
+
+    view.rendNbrPig(model.getNbrPigEaten());
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();

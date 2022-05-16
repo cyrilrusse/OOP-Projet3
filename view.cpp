@@ -47,6 +47,10 @@ View::View(int fps){
     text_meaty_arrow = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Meat.bmp"));
     text_balloon = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Balloon.bmp"));
     text_rock = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Rock.bmp"));
+
+    //Init font
+    TTF_Init();
+    font = TTF_OpenFont("LEMONMILK-Regular.otf", 24);
 }
 
 void View::setBackground(){
@@ -115,11 +119,22 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
     }
 }
 
-void View::rendArrow(int x, int y){
+void View::rendArrow(int x, int y, double angle){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
+    SDL_Point center = {x, y};
+    SDL_SetRenderTarget(rend, text_arrow);
+    SDL_RenderCopyEx(rend, text_arrow, &dimension, NULL, angle, &center, SDL_FLIP_NONE);
+    SDL_SetRenderTarget(rend, NULL);
     SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
+    
 }
 
 void View::rendNbrPig(int nbr_pig){
-    
+    SDL_Color black = {BLACK};
+    std::string msg_string = std::to_string(nbr_pig)+"/5";
+    const char* msg = msg_string.c_str();
+    SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, black);
+    SDL_Texture *text_message = SDL_CreateTextureFromSurface(rend, surface_message);
+    SDL_Rect message_dimension = {HOUSE_POSITION,HOUSE_DIMENSIONS};
+    SDL_RenderCopy(rend, text_message, NULL, &message_dimension);
 }

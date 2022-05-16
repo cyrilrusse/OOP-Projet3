@@ -28,6 +28,7 @@ class Model{
         vector<Rock> getRockArray() {return rock_array;};
         int getTimingmeat(){return timing_meat;};
         Arrow *getArrow(){return &arrow;};
+        int getNbrPigEaten(){return nbr_of_little_pig_eaten;};
         void moveMamaPig(int direction);
         void computeMamaPigPosition();
         void addWolf();

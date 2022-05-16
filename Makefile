@@ -2,7 +2,7 @@
 OBJ = main.o controller.o view.o projectile.o model.o character.o
 CC = g++
 EXEC = Pooyan
-FLAGS = `sdl2-config --libs --cflags` -std=c++17 -Wall -Wextra -lm
+FLAGS = `sdl2-config --libs --cflags` -std=c++17 -Wall -Wextra -lm -lSDL2_ttf
 
 Pooyan : $(OBJ)
 	$(CC) -o $(EXEC) $(OBJ) $(FLAGS)
