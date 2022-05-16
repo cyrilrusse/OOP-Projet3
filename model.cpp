@@ -26,6 +26,10 @@ void Model::addWolf(){
     wolf_array.push_back(Wolf());
 }
 
+void Model::changeRocksPosition(){
+    for(auto &rock : rock_array)
+        rock.next_position();
+}
 void Model::computeWolfsPosition(){
     vector<int> wolf_to_remove;
     int i = 0;

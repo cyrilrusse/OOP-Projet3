@@ -22,7 +22,8 @@ void Controller::handleInputs(){
                 mama_moved = true;
                 break;
             case SDLK_SPACE:
-                model.getArrow()->setLaunch(true);
+                if(model.getArrow()->getReload() >= 30)
+                    model.getArrow()->setLaunch(true);
                 break;
                 
             default:
@@ -59,8 +60,9 @@ void Controller::renderObjects(){
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     std::vector<Rock> rocks = model.getRockArray();
-    for(auto &rock : rocks)
+    for(auto &rock : rocks){ 
         view.rendRock(rock.getPosX(), rock.getPosY());
+    }
 }
 
 void Controller::manageObjects(){
@@ -78,7 +80,11 @@ void Controller::manageObjects(){
     else
     {
         model.getArrow()->next_position();
+        if (model.getArrow()->canBeSup()){
+            model.getArrow()->Reload();
+        }
     }
+    model.getArrow()->setReload(model.getArrow()->getReload()+1);
 }
 
 void Controller::endGame(){
@@ -103,9 +109,9 @@ void Controller::manageRocks(){
         if(wolf.getPosy() == 230 || wolf.getReload()==90){
             model.addRock(Rock(wolf.getPosx()+30,wolf.getPosy()));
             wolf.setReload(0);
-            std::cout<<"oui"<<std::endl;
         }
         else
             wolf.setReload(wolf.getReload()+1);
     }
+    model.changeRocksPosition();
 }

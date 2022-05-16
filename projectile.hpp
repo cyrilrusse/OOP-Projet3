@@ -24,20 +24,25 @@ class Projectile{
         void setPosX(int PX){position_x = PX;};
         void setPosY(int PY){position_y = PY;};
         double getVelocityY(){return velocity_y;};
-        double getVelocityX() { return velocity_x; };
+        double getVelocityX(){return velocity_x; };
         int getSizex(){return size_x;};
         int getSizey(){return size_y;};
         bool getLaunch(){return launch;};
         void setLaunch(bool L){launch = L;};
         double getAngle(){return angle;};
+        bool canBeSup();
+        void Reload();
 };
 
 class Arrow: public Projectile{
     private:
         bool meat;
+        int reload = 30;
     public:
         Arrow(int pos_x, int pos_y);
         void arrow_meat();
+        void setReload(int R){reload = R;};
+        int getReload(){return reload;};
         bool get_meat(){return meat;};
 };
 

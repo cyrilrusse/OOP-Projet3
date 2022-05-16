@@ -28,7 +28,18 @@ void Projectile::next_position(){
     position_y += velocity_y/30;
 }
 
-
+bool Projectile::canBeSup(){
+    if(position_y<480||(position_x<550 && position_x>0))
+        return false;
+    return true;
+}
+void Projectile::Reload()
+{
+    angle = 185;
+    velocity_x = 500 * cos(angle * M_PI / 180);
+    velocity_y = 500 * sin(angle * M_PI / 180);
+    launch = false;
+}
 
 Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){
     meat = false;
@@ -45,7 +56,9 @@ void Arrow::arrow_meat(){
     meat = true;
     masse = 30;
     cross_area = 10;
+    launch = false;
 }
+
 
 Rock::Rock(int pos_x, int pos_y) : Projectile(pos_x, pos_y)
 {
