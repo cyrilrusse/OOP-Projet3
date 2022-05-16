@@ -30,7 +30,9 @@ public:
     void endGame();
     void computeObjectsPosition();
     void manageObjects();
+    void manageTiming();
     void renderObjects();
+    void manageRocks();
 };
 
 #endif

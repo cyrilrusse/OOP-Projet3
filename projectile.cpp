@@ -14,7 +14,6 @@ Projectile::Projectile(int pos_x, int pos_y){
 double Projectile::calcDragForce(){
     double norme_velocity = sqrt(velocity_x*velocity_x+velocity_y*velocity_y);
     double drag_force = (1./2)*AIR_DENSITY*cross_area*DRAG_COEF*norme_velocity*norme_velocity;
-
     return drag_force;
 }
 
@@ -28,6 +27,7 @@ void Projectile::next_position(){
     position_x += velocity_x/30;
     position_y += velocity_y/30;
 }
+
 
 
 Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){

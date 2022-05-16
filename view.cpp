@@ -120,6 +120,12 @@ void View::rendArrow(int x, int y){
     SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
 }
 
+void View::rendRock(int x, int y)
+{
+    SDL_Rect dimension = {x, y, ROCK_DIMENSIONS};
+    SDL_RenderCopy(rend, text_rock, NULL, &dimension);
+}
+
 void View::rendNbrPig(int nbr_pig){
     
 }

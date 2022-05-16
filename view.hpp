@@ -56,6 +56,7 @@ public:
     void setMeatAppeared(bool MA){meat_appeared=MA;};
     bool getMeatAppeared(){return meat_appeared;};
     void rendNbrPig(int nbr_pig);
+    void rendRock(int x, int y);
 };
 
 #endif

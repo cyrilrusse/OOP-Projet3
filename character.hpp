@@ -57,11 +57,14 @@ private:
     wolf_status status;
     int falling_pos;
     int step = 0;
+    int reload = 0;
 public:
     //Constructor
     Wolf();
 
     //Access
+    int getReload(){return reload;};
+    void setReload(int R){reload=R;};
     wolf_status getStatus(){return status;}
     int getStep(){if(status==WALKING || status==WALKING_WITHOUT_BALLOON)return step;return -1;}
 

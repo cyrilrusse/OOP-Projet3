@@ -39,29 +39,14 @@ void Controller::game(){
     handleInputs();
 
     model.computeMamaPigPosition();
-    if(model.getTimingmeat() >= 270){ 
-        view.rendMeat(400, 170);
-        view.setMeatAppeared(true);
-        
-    }
-    if(model.getTimingmeat() < 270 && !view.getMeatAppeared()){
-        model.setTimingmeat(model.getTimingmeat()+1);
-    }
+
+    manageTiming();
     manageObjects();
     renderObjects();
-
-    if(!model.getArrow()->getLaunch()){ 
-        model.getArrow()->setPosX(model.getMamaPigPosX() - 5);
-        model.getArrow()->setPosY(model.getMamaPigPosY() +30);
-    }
-    else{
-        model.getArrow()->next_position();
-        std::cout << model.getArrow()->getVelocityX() << " " << model.getArrow()->getVelocityY() << std::endl;
-    }
+    manageRocks();
 
     view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY());
 
-    view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
     view.show();
 }
 
@@ -71,6 +56,9 @@ void Controller::renderObjects(){
         view.rendWolf(wolf.getStatus(), wolf.getPosx(), wolf.getPosy(), wolf.getStep());
 
     view.rendMamaPig(model.getMamaPigPosX(), model.getMamaPigPosY());
+    std::vector<Rock> rocks = model.getRockArray();
+    for(auto &rock : rocks)
+        view.rendRock(rock.getPosX(), rock.getPosY());
 }
 
 void Controller::manageObjects(){
@@ -80,8 +68,42 @@ void Controller::manageObjects(){
         time_since_last_wolf = 0;
     }
     model.computeWolfsPosition();
+    if (!model.getArrow()->getLaunch())
+    {
+        model.getArrow()->setPosX(model.getMamaPigPosX() - 5);
+        model.getArrow()->setPosY(model.getMamaPigPosY() + 30);
+    }
+    else
+    {
+        model.getArrow()->next_position();
+    }
 }
 
 void Controller::endGame(){
     view.closeView();
+}
+
+void Controller::manageTiming(){
+    if (model.getTimingmeat() >= 270)
+    {
+        view.rendMeat(400, 170);
+        view.setMeatAppeared(true);
+    }
+    if (model.getTimingmeat() < 270 && !view.getMeatAppeared())
+    {
+        model.setTimingmeat(model.getTimingmeat() + 1);
+    }
+}
+
+void Controller::manageRocks(){
+    std::vector<Wolf> wolfs = model.getWolfArray();
+    for(auto &wolf : wolfs){
+        if(wolf.getPosy() == 230 || wolf.getReload()==90){
+            model.getRockArray().push_back(Rock(wolf.getPosx()+30,wolf.getPosy()));
+            wolf.setReload(0);
+            std::cout<<"oui"<<std::endl;
+        }
+        else
+            wolf.setReload(wolf.getReload()+1);
+    }
 }
