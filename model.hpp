@@ -17,6 +17,7 @@ class Model{
         int timing_meat;
         int nbr_of_little_pig_eaten;
         Uint32 time_last_frame;
+        bool has_lost;
     public:
         //Constructor
         Model(int fps);
@@ -34,6 +35,7 @@ class Model{
         void addWolf();
         void computeWolfsPosition();
         void setTimingmeat(int TM){timing_meat =TM;};
+        bool hasLost(){return has_lost;};
 };
 
 

@@ -13,7 +13,7 @@
 class Controller{
 private:
     SDL_Event event;
-    bool ingame;
+    bool ingame, game_lost;
     View view = View(NBR_OF_FPS);
     Model model = Model(NBR_OF_FPS);
     double time_since_last_wolf;
@@ -27,12 +27,14 @@ public:
 
     void handleInputs();
     void game();
-    void endGame();
+    void closeGame();
+    void gameOver();
     void computeObjectsPosition();
     void manageObjects();
     void manageTiming();
     void renderObjects();
     void manageRocks();
+    bool gameIsLost(){return model.hasLost();};
 };
 
 #endif

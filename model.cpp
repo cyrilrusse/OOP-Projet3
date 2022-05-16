@@ -7,6 +7,7 @@ Model::Model(int fps){
     timing_meat = 0;
     nbr_of_little_pig_eaten = 0;
     time_last_frame = SDL_GetTicks();
+    has_lost = false;
 }
 
 void Model::moveMamaPig(int direction){
@@ -44,5 +45,7 @@ void Model::computeWolfsPosition(){
     }
     for(i = wolf_to_remove.size(); i>0; i--)
         wolf_array.erase(wolf_array.begin()+wolf_to_remove[i-1]);
+    if(nbr_of_little_pig_eaten==5)
+        has_lost = true;
     // time_last_frame = SDL_GetTicks();
 }

@@ -144,3 +144,16 @@ void View::rendNbrPig(int nbr_pig){
     SDL_Rect message_dimension = {HOUSE_POSITION,HOUSE_DIMENSIONS};
     SDL_RenderCopy(rend, text_message, NULL, &message_dimension);
 }
+
+void View::rendGameOver(){
+    SDL_SetRenderDrawColor(rend, BLACK, 255);
+    SDL_RenderClear(rend);
+    SDL_Color white = {WHITE};
+    std::string msg_string = "GAME OVER";
+    const char *msg = msg_string.c_str();
+    SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, white);
+    SDL_Texture *text_message = SDL_CreateTextureFromSurface(rend, surface_message);
+    SDL_Rect message_dimension = {0,0, WEIGHT, HEIGHT};
+    SDL_RenderCopy(rend, text_message, NULL, &message_dimension);
+    show();
+}

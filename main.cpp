@@ -8,11 +8,14 @@
 int main(){
     srand(time(NULL));
     Controller controller;
-    
-    while (controller.inGame())
-        controller.game();
+    while(controller.inGame()){
+        if (!controller.gameIsLost())
+            controller.game();
+        else
+            controller.gameOver();
+    }
 
-    controller.endGame();
+    controller.closeGame();
 
     return 0;
 }

@@ -2,6 +2,7 @@
 
 Controller::Controller(){
     ingame = true;
+    game_lost = false;
     time_since_last_wolf = 0;
 }
 
@@ -81,8 +82,13 @@ void Controller::manageObjects(){
     }
 }
 
-void Controller::endGame(){
+void Controller::closeGame(){
     view.closeView();
+}
+
+void Controller::gameOver(){
+    handleInputs();
+    view.rendGameOver();
 }
 
 void Controller::manageTiming(){
@@ -109,3 +115,5 @@ void Controller::manageRocks(){
             wolf.setReload(wolf.getReload()+1);
     }
 }
+
+

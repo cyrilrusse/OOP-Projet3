@@ -18,6 +18,7 @@
 #define GROUNDBROWN 128, 96, 20
 #define GREY 220, 220, 220
 #define BLACK 0, 0, 0
+#define WHITE 255, 255, 255
 
 //Texture dimensions
 #define MAMAPIG_DIMENSIONS 30, 50
@@ -63,6 +64,7 @@ public:
     bool getMeatAppeared(){return meat_appeared;};
     void rendNbrPig(int nbr_pig);
     void rendRock(int x, int y);
+    void rendGameOver();
 };
 
 #endif
