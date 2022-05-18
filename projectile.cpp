@@ -33,8 +33,7 @@ bool Projectile::canBeSup(){
         return false;
     return true;
 }
-void Projectile::Reload()
-{
+void Projectile::Reload(){
     angle = 185;
     velocity_x = 500 * cos(angle * M_PI / 180);
     velocity_y = 500 * sin(angle * M_PI / 180);
@@ -60,8 +59,7 @@ void Arrow::arrow_meat(){
 }
 
 
-Rock::Rock(int pos_x, int pos_y) : Projectile(pos_x, pos_y)
-{
+Rock::Rock(int pos_x, int pos_y) : Projectile(pos_x, pos_y){
     size_x = 15;
     size_y = 15;
     masse = 30;

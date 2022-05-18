@@ -136,7 +136,10 @@ void View::rendRock(int x, int y)
 }
 
 void View::rendNbrPig(int nbr_pig){
-    SDL_Color black = {BLACK};
+    SDL_Color black;
+    black.r = 0;
+    black.g = 0;
+    black.b = 0;
     std::string msg_string = std::to_string(nbr_pig)+"/5";
     const char* msg = msg_string.c_str();
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, black);
@@ -148,7 +151,10 @@ void View::rendNbrPig(int nbr_pig){
 void View::rendGameOver(){
     SDL_SetRenderDrawColor(rend, BLACK, 255);
     SDL_RenderClear(rend);
-    SDL_Color white = {WHITE};
+    SDL_Color white;
+    white.r = 255;
+    white.g = 255;
+    white.b = 255;
     std::string msg_string = "GAME OVER";
     const char *msg = msg_string.c_str();
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, white);
