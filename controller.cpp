@@ -4,10 +4,14 @@ Controller::Controller(){
     ingame = true;
     game_lost = false;
     time_since_last_wolf = 0;
+    //debug
+    time(debug_fps);
+    counter = 0;
+    for(int i=0; i<3; i++)
+        keys_pressed[i]= false;
 }
 
 void Controller::handleInputs(){
-    bool mama_moved = false;
     while (SDL_PollEvent(&event)){
         if(event.type == SDL_QUIT){
             ingame = false;
@@ -15,12 +19,16 @@ void Controller::handleInputs(){
         }
         switch (event.key.keysym.sym){
             case SDLK_UP:
-                model.moveMamaPig(1);
-                mama_moved = true;
+                if (event.type == SDL_KEYDOWN)
+                    keys_pressed[0] = true;
+                else if(event.type == SDL_KEYUP)
+                    keys_pressed[0] = false;
                 break;
             case SDLK_DOWN:
-                model.moveMamaPig(-1);
-                mama_moved = true;
+                if (event.type == SDL_KEYDOWN)
+                    keys_pressed[1] = true;
+                else if (event.type == SDL_KEYUP)
+                    keys_pressed[1] = false;
                 break;
             case SDLK_SPACE:
                 if(model.getArrow()->getReload() >= 30)
@@ -31,11 +39,21 @@ void Controller::handleInputs(){
                 break;
         }
     }
-    if(!mama_moved)
+    if(keys_pressed[0]==true && keys_pressed[1]==true)
         model.moveMamaPig(0);
+    else if(keys_pressed[0])
+        model.moveMamaPig(1);
+    else if(keys_pressed[1])
+        model.moveMamaPig(-1);
+    else
+        model.moveMamaPig(0);    
 }
 
 void Controller::game(){
+    // ++counter%=31;
+    // if(counter==30){
+    //     printf("time since last 30 frames: %d\n", time(NULL)-*debug_fps);
+    // }
     view.setBackground();
 
     handleInputs();
