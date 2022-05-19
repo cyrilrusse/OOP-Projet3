@@ -18,6 +18,7 @@ class Model{
         int nbr_of_little_pig_eaten;
         Uint32 time_last_frame;
         bool has_lost;
+        bool meat_appeared;
     public:
         //Constructor
         Model(int fps);
@@ -42,6 +43,9 @@ class Model{
         void shotRocks();
         void testCollisionPig();
         void testCollisionWolf();
+        void testArrowMeated();
+        void setMeatAppeared(bool MA) { meat_appeared = MA; };
+        bool getMeatAppeared() { return meat_appeared; };
 };
 
 

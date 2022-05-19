@@ -57,11 +57,9 @@ public:
     void show();
     void closeView();
     void rendMamaPig(int x, int y);
-    void rendMeat(int x, int y);
+    void rendMeat(int x, int y, double angle, bool launched);
     void rendWolf(wolf_status wolf, int x, int y, int step);
-    void rendArrow(int x, int y, double angle, bool lauched);
-    void setMeatAppeared(bool MA){meat_appeared=MA;};
-    bool getMeatAppeared(){return meat_appeared;};
+    void rendArrow(int x, int y, double angle, bool launched);
     void rendNbrPig(int nbr_pig);
     void rendRock(int x, int y);
     void rendGameOver();

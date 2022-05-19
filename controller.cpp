@@ -57,7 +57,10 @@ void Controller::game(){
     renderObjects();
     manageRocks();
 
-    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle(), model.getArrow()->getLaunch());
+    if(model.getArrow()->get_meat())
+        view.rendMeat(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle(), model.getArrow()->getLaunch());
+    else
+        view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle(), model.getArrow()->getLaunch());
 
     view.rendNbrPig(model.getNbrPigEaten());
 
@@ -108,11 +111,11 @@ void Controller::gameOver(){
 }
 
 void Controller::manageTiming(){
-    if (model.getTimingmeat() >= 270){
-        view.rendMeat(400, 170);
-        view.setMeatAppeared(true);
+    if (model.getTimingmeat() >= 300){
+        view.rendMeat(400, 170, 0, false);
+        model.setMeatAppeared(true);
     }
-    if (model.getTimingmeat() < 270 && !view.getMeatAppeared())
+    if (model.getTimingmeat() < 300 && !model.getMeatAppeared())
         model.setTimingmeat(model.getTimingmeat() + 1);
 }
 
@@ -121,6 +124,7 @@ void Controller::manageRocks(){
     model.changeRocksPosition();
     model.testCollisionPig();
     model.testCollisionWolf();
+    model.testArrowMeated();
     
     //ici Martin que tu dois rajouter tes collisions de con
     model.removeProjectiles();

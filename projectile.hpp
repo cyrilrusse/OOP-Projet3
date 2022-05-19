@@ -44,6 +44,7 @@ class Arrow: public Projectile{
         void setReload(int R){reload = R;};
         int getReload(){return reload;};
         bool get_meat(){return meat;};
+        void Reload();
 };
 
 class Rock: public Projectile{

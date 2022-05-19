@@ -33,7 +33,6 @@ View::View(int fps){
     house.y = 405;
 
     nbr_of_fps = fps;
-    meat_appeared = false;
 
     //texture loading
     text_wolf_walking1 = SDL_CreateTextureFromSurface(rend, SDL_LoadBMP("../sprites/Wolf_WalkingLeft_Step1.bmp"));
@@ -85,9 +84,12 @@ void View::rendMamaPig(int x, int y){
     SDL_RenderCopy(rend, text_mama_pig, NULL, &dimension);
 }
 
-void View::rendMeat(int x, int y){
+void View::rendMeat(int x, int y, double angle, bool launched){
     SDL_Rect dimension = {x, y, MEATY_ARROW_DIMENSIONS};
-    SDL_RenderCopy(rend, text_meaty_arrow, NULL, &dimension);
+    if (launched)
+        SDL_RenderCopyEx(rend, text_meaty_arrow, NULL, &dimension, angle * 180 / M_PI, NULL, SDL_FLIP_NONE);
+    else
+        SDL_RenderCopyEx(rend, text_meaty_arrow, NULL, &dimension, 0, NULL, SDL_FLIP_NONE);
 }
 
 void View::rendWolf(wolf_status w_status, int x, int y, int step){

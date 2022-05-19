@@ -37,6 +37,10 @@ void Projectile::Reload(){
     velocity_y = 500 * sin(angle );
     launch = false;
 }
+void Arrow::Reload(){
+    Projectile::Reload();
+    meat = false;
+}
 
 Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){
     meat = false;
@@ -53,6 +57,9 @@ void Arrow::arrow_meat(){
     meat = true;
     masse = 30;
     cross_area = 10;
+    angle = 185 * M_PI / 180;
+    velocity_x = 500 * cos(angle);
+    velocity_y = 500 * sin(angle);
     launch = false;
 }
 

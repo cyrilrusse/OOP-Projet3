@@ -8,6 +8,7 @@ Model::Model(int fps){
     nbr_of_little_pig_eaten = 0;
     time_last_frame = SDL_GetTicks();
     has_lost = false;
+    meat_appeared = false;
 }
 
 void Model::moveMamaPig(int direction){
@@ -101,4 +102,12 @@ void Model::testCollisionWolf(){
                     arrow.Reload();
                 }
     }
+}
+
+void Model::testArrowMeated(){
+    if(mama_pig.getPosy()<175 && meat_appeared){ 
+        arrow.arrow_meat();
+        timing_meat = 0;
+        meat_appeared = false;
+        }
 }
