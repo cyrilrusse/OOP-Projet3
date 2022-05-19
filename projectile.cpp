@@ -34,9 +34,9 @@ bool Projectile::canBeSup(){
     return true;
 }
 void Projectile::Reload(){
-    angle = 185;
-    velocity_x = 500 * cos(angle * M_PI / 180);
-    velocity_y = 500 * sin(angle * M_PI / 180);
+    angle = 185 * M_PI / 180;
+    velocity_x = 500 * cos(angle );
+    velocity_y = 500 * sin(angle );
     launch = false;
 }
 
@@ -44,11 +44,11 @@ Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){
     meat = false;
     size_x = 20;
     size_y = 10;
-    angle = 185;
+    angle = 185 * M_PI / 180;
     masse = 5;
     cross_area = 1;
-    velocity_x = 500 * cos(angle * M_PI / 180);
-    velocity_y = 500 * sin(angle * M_PI / 180);
+    velocity_x = 500 * cos(angle );
+    velocity_y = 500 * sin(angle );
 }
 
 void Arrow::arrow_meat(){
@@ -63,8 +63,8 @@ Rock::Rock(int pos_x, int pos_y) : Projectile(pos_x, pos_y){
     size_x = 15;
     size_y = 15;
     masse = 30;
-    angle = -50;
+    angle = -50*M_PI / 180;
     cross_area = 1;
-    velocity_x = 250 * cos(angle * M_PI / 180);
-    velocity_y = 250 * sin(angle * M_PI / 180);
+    velocity_x = 250 * cos(angle );
+    velocity_y = 250 * sin(angle );
 }
