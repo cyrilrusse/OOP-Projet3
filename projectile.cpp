@@ -2,9 +2,7 @@
 #define AIR_DENSITY 1
 #define DRAG_COEF 0.001
 
-// void Projectile::next_position(){
-    
-// }
+
 Projectile::Projectile(int pos_x, int pos_y){
     position_x = pos_x;
     position_y = pos_y;
