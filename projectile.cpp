@@ -47,8 +47,8 @@ Arrow::Arrow(int pos_x, int pos_y):Projectile(pos_x,pos_y){
     angle = 185 * M_PI / 180;
     masse = 5;
     cross_area = 1;
-    velocity_x = 500 * cos(angle );
-    velocity_y = 500 * sin(angle );
+    velocity_x = 500 * cos(angle);
+    velocity_y = 500 * sin(angle);
 }
 
 void Arrow::arrow_meat(){

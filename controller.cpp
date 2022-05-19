@@ -117,14 +117,8 @@ void Controller::manageTiming(){
 }
 
 void Controller::manageRocks(){
-    std::vector<Wolf> wolfs = model.getWolfArray();
-    for(auto &wolf : wolfs){
-        if(wolf.getPosy() == 230 || wolf.getReload()==90){
-            model.addRock(Rock(wolf.getPosx()+30,wolf.getPosy()));
-            wolf.setReload(0);
-        }
-        else
-            wolf.setReload(wolf.getReload()+1);
-    }
+    model.shotRocks();
     model.changeRocksPosition();
+    //ici Martin que tu dois rajouter tes collisions de con
+    model.removeProjectiles();
 }
