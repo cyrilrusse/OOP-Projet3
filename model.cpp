@@ -53,3 +53,27 @@ void Model::computeWolfsPosition(){
         has_lost = true;
     // time_last_frame = SDL_GetTicks();
 }
+
+bool Model::testCollisionPig()
+{
+    for (auto &rock : rock_array){
+        if (rock.getPosX() < mama_pig.getPosx() + 30 &&
+            rock.getPosX() + rock.getSizex() > mama_pig.getPosx() &&
+            rock.getPosY() < mama_pig.getPosy() + 50 &&
+            rock.getPosY() + rock.getSizey() > mama_pig.getPosy())
+            return true;
+    }
+    return false;
+}
+
+bool Model::testCollisionWolf(){
+    for (auto &wolf : wolf_array)
+    {
+        if (wolf.getPosx() + 15 < arrow.getPosX() + arrow.getSizex() &&
+            wolf.getPosx() + 30 > arrow.getPosX() &&
+            wolf.getPosy() - 17 < arrow.getPosY() + arrow.getSizey()&&
+            wolf.getPosy() > arrow.getPosY())
+            return true;
+    }
+    return false;
+}

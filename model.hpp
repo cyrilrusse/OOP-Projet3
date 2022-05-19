@@ -38,6 +38,8 @@ class Model{
         void computeWolfsPosition();
         void setTimingmeat(int TM){timing_meat =TM;};
         bool hasLost(){return has_lost;};
+        bool testCollisionPig();
+        bool testCollisionWolf();
 };
 
 
