@@ -121,11 +121,7 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
 
 void View::rendArrow(int x, int y, double angle){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
-    SDL_Point center = {x, y};
-    SDL_SetRenderTarget(rend, text_arrow);
-    SDL_RenderCopyEx(rend, text_arrow, &dimension, NULL, angle, &center, SDL_FLIP_NONE);
-    SDL_SetRenderTarget(rend, NULL);
-    SDL_RenderCopy(rend, text_arrow, NULL, &dimension);
+    SDL_RenderCopyEx(rend, text_arrow, NULL, &dimension, angle*180/M_PI, NULL, SDL_FLIP_NONE);
     
 }
 
@@ -136,10 +132,7 @@ void View::rendRock(int x, int y)
 }
 
 void View::rendNbrPig(int nbr_pig){
-    SDL_Color black;
-    black.r = 0;
-    black.g = 0;
-    black.b = 0;
+    SDL_Color black = {BLACK, 255};
     std::string msg_string = std::to_string(nbr_pig)+"/5";
     const char* msg = msg_string.c_str();
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, black);
@@ -151,10 +144,7 @@ void View::rendNbrPig(int nbr_pig){
 void View::rendGameOver(){
     SDL_SetRenderDrawColor(rend, BLACK, 255);
     SDL_RenderClear(rend);
-    SDL_Color white;
-    white.r = 255;
-    white.g = 255;
-    white.b = 255;
+    SDL_Color white = {WHITE, 255};
     std::string msg_string = "GAME OVER";
     const char *msg = msg_string.c_str();
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, white);
