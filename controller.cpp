@@ -57,7 +57,7 @@ void Controller::game(){
     renderObjects();
     manageRocks();
 
-    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle());
+    view.rendArrow(model.getArrow()->getPosX(), model.getArrow()->getPosY(), model.getArrow()->getAngle(), model.getArrow()->getLaunch());
 
     view.rendNbrPig(model.getNbrPigEaten());
 

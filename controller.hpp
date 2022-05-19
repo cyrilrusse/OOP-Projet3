@@ -13,11 +13,10 @@
 class Controller{
 private:
     SDL_Event event;
-    bool ingame, game_lost;
+    bool ingame, game_lost, keys_pressed[2];
     View view = View(NBR_OF_FPS);
     Model model = Model(NBR_OF_FPS);
     double time_since_last_wolf;    
-    bool keys_pressed[2];
 
 public:
     //Constructor

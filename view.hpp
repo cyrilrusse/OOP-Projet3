@@ -59,7 +59,7 @@ public:
     void rendMamaPig(int x, int y);
     void rendMeat(int x, int y);
     void rendWolf(wolf_status wolf, int x, int y, int step);
-    void rendArrow(int x, int y, double angle);
+    void rendArrow(int x, int y, double angle, bool lauched);
     void setMeatAppeared(bool MA){meat_appeared=MA;};
     bool getMeatAppeared(){return meat_appeared;};
     void rendNbrPig(int nbr_pig);

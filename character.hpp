@@ -42,14 +42,14 @@ enum wolf_status{
 
 class Character{
 protected:
-    int position_x, position_y;
+    double position_x, position_y;
 public:
     //Constructor
     Character(int x, int y);
 
     //Access
-    int getPosx(){return position_x;}
-    int getPosy(){return position_y;}
+    int getPosx(){return (int)position_x;}
+    int getPosy(){return (int)position_y;}
 };
 
 class Wolf : public Character{

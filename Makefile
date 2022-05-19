@@ -26,4 +26,4 @@ character.o : character.cpp character.hpp
 	$(CC) -c character.cpp $(FLAGS)
 
 clean:
-	rm $(OBJ) $(EXEC)
+	rm -f $(OBJ) $(EXEC)

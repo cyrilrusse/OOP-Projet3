@@ -119,14 +119,15 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
     }
 }
 
-void View::rendArrow(int x, int y, double angle){
+void View::rendArrow(int x, int y, double angle, bool launched){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
-    SDL_RenderCopyEx(rend, text_arrow, NULL, &dimension, angle*180/M_PI, NULL, SDL_FLIP_NONE);
-    
+    if(launched)
+        SDL_RenderCopyEx(rend, text_arrow, NULL, &dimension, angle*180/M_PI, NULL, SDL_FLIP_NONE);
+    else
+        SDL_RenderCopyEx(rend, text_arrow, NULL, &dimension, 0, NULL, SDL_FLIP_NONE);
 }
 
-void View::rendRock(int x, int y)
-{
+void View::rendRock(int x, int y){
     SDL_Rect dimension = {x, y, ROCK_DIMENSIONS};
     SDL_RenderCopy(rend, text_rock, NULL, &dimension);
 }
