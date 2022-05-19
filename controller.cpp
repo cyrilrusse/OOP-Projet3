@@ -119,6 +119,9 @@ void Controller::manageTiming(){
 void Controller::manageRocks(){
     model.shotRocks();
     model.changeRocksPosition();
+    model.testCollisionPig();
+    model.testCollisionWolf();
+    
     //ici Martin que tu dois rajouter tes collisions de con
     model.removeProjectiles();
 }

@@ -40,8 +40,8 @@ class Model{
         bool hasLost(){return has_lost;};
         void removeProjectiles();
         void shotRocks();
-        bool testCollisionPig();
-        bool testCollisionWolf();
+        void testCollisionPig();
+        void testCollisionWolf();
 };
 
 

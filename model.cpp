@@ -72,26 +72,33 @@ void Model::shotRocks(){
     // time_last_frame = SDL_GetTicks();
 }
 
-bool Model::testCollisionPig()
+void Model::testCollisionPig()
 {
     for (auto &rock : rock_array){
         if (rock.getPosX() < mama_pig.getPosx() + 30 &&
             rock.getPosX() + rock.getSizex() > mama_pig.getPosx() &&
             rock.getPosY() < mama_pig.getPosy() + 50 &&
             rock.getPosY() + rock.getSizey() > mama_pig.getPosy())
-            return true;
+            has_lost = true;
     }
-    return false;
 }
 
-bool Model::testCollisionWolf(){
+void Model::testCollisionWolf(){
     for (auto &wolf : wolf_array)
     {
         if (wolf.getPosx() + 15 < arrow.getPosX() + arrow.getSizex() &&
             wolf.getPosx() + 30 > arrow.getPosX() &&
             wolf.getPosy() - 17 < arrow.getPosY() + arrow.getSizey()&&
             wolf.getPosy() > arrow.getPosY())
-            return true;
+            wolf.setStatus(FREE_FALLING);
+        else if (wolf.getPosx() < arrow.getPosX() + arrow.getSizex() &&
+                 wolf.getPosx() + 30 > arrow.getPosX() &&
+                 wolf.getPosy() < arrow.getPosY() + arrow.getSizey() &&
+                 wolf.getPosy() + 35 > arrow.getPosY()){ 
+                if(arrow.get_meat())
+                    wolf.setStatus(FREE_FALLING);
+                else
+                    arrow.Reload();
+                }
     }
-    return false;
 }
