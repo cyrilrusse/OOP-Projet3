@@ -4,10 +4,7 @@ Controller::Controller(){
     ingame = true;
     game_lost = false;
     time_since_last_wolf = 0;
-    //debug
-    time(debug_fps);
-    counter = 0;
-    for(int i=0; i<3; i++)
+    for(int i=0; i<2; i++)
         keys_pressed[i]= false;
 }
 
@@ -34,7 +31,6 @@ void Controller::handleInputs(){
                 if(model.getArrow()->getReload() >= 30)
                     model.getArrow()->setLaunch(true);
                 break;
-                
             default:
                 break;
         }
@@ -50,10 +46,6 @@ void Controller::handleInputs(){
 }
 
 void Controller::game(){
-    // ++counter%=31;
-    // if(counter==30){
-    //     printf("time since last 30 frames: %d\n", time(NULL)-*debug_fps);
-    // }
     view.setBackground();
 
     handleInputs();
@@ -116,15 +108,12 @@ void Controller::gameOver(){
 }
 
 void Controller::manageTiming(){
-    if (model.getTimingmeat() >= 270)
-    {
+    if (model.getTimingmeat() >= 270){
         view.rendMeat(400, 170);
         view.setMeatAppeared(true);
     }
     if (model.getTimingmeat() < 270 && !view.getMeatAppeared())
-    {
         model.setTimingmeat(model.getTimingmeat() + 1);
-    }
 }
 
 void Controller::manageRocks(){

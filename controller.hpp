@@ -16,13 +16,8 @@ private:
     bool ingame, game_lost;
     View view = View(NBR_OF_FPS);
     Model model = Model(NBR_OF_FPS);
-    double time_since_last_wolf;
-    time_t *debug_fps;
-    int counter;
-    
-    //test
-    bool keys_pressed[3];
-    bool old_keys_pressed[3];
+    double time_since_last_wolf;    
+    bool keys_pressed[2];
 
 public:
     //Constructor
