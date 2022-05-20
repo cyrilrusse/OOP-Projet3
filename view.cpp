@@ -53,9 +53,11 @@ View::View(int fps){
 }
 
 void View::setBackground(){
+    //Reset the window paint in blue
     SDL_SetRenderDrawColor(rend, BLUE, 255);
     SDL_RenderClear(rend);
 
+    //Sets rectangle of the background
     SDL_SetRenderDrawColor(rend, GREEN, 255);
     SDL_RenderFillRect(rend, &ledge);
 
@@ -86,6 +88,8 @@ void View::rendMamaPig(int x, int y){
 
 void View::rendMeat(int x, int y, double angle, bool launched){
     SDL_Rect dimension = {x, y, MEATY_ARROW_DIMENSIONS};
+    //While not lauched, rended with angle = 0, to rend the arrow horizontally
+    //otherwise rend it with the current angle of the arrow trajectory
     if (launched)
         SDL_RenderCopyEx(rend, text_meaty_arrow, NULL, &dimension, angle * 180 / M_PI, NULL, SDL_FLIP_NONE);
     else
@@ -123,6 +127,8 @@ void View::rendWolf(wolf_status w_status, int x, int y, int step){
 
 void View::rendArrow(int x, int y, double angle, bool launched){
     SDL_Rect dimension = {x, y, ARROW_DIMENSIONS};
+    // While not lauched, rended with angle = 0, to rend the arrow horizontally
+    // otherwise rend it with the current angle of the arrow trajectory
     if(launched)
         SDL_RenderCopyEx(rend, text_arrow, NULL, &dimension, angle*180/M_PI, NULL, SDL_FLIP_NONE);
     else
@@ -136,20 +142,28 @@ void View::rendRock(int x, int y){
 
 void View::rendNbrPig(int nbr_pig){
     SDL_Color black = {BLACK, 255};
+    SDL_Rect message_dimension = {HOUSE_POSITION,HOUSE_DIMENSIONS};
+    
+    //Create msg into const char string
     std::string msg_string = std::to_string(nbr_pig)+"/5";
     const char* msg = msg_string.c_str();
+
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, black);
     SDL_Texture *text_message = SDL_CreateTextureFromSurface(rend, surface_message);
-    SDL_Rect message_dimension = {HOUSE_POSITION,HOUSE_DIMENSIONS};
     SDL_RenderCopy(rend, text_message, NULL, &message_dimension);
 }
 
 void View::rendGameOver(){
+    SDL_Color white = {WHITE, 255};
+    
+    //Paint background in black
     SDL_SetRenderDrawColor(rend, BLACK, 255);
     SDL_RenderClear(rend);
-    SDL_Color white = {WHITE, 255};
+    
+    //Create gameover message into const char string
     std::string msg_string = "GAME OVER";
     const char *msg = msg_string.c_str();
+
     SDL_Surface *surface_message = TTF_RenderText_Solid(font, msg, white);
     SDL_Texture *text_message = SDL_CreateTextureFromSurface(rend, surface_message);
     SDL_Rect message_dimension = {0,0, WEIGHT, HEIGHT};

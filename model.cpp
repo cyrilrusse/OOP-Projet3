@@ -6,7 +6,6 @@ Model::Model(int fps){
     nbr_of_fps = fps;
     timing_meat = 0;
     nbr_of_little_pig_eaten = 0;
-    time_last_frame = SDL_GetTicks();
     has_lost = false;
     meat_appeared = false;
 }
@@ -30,9 +29,7 @@ void Model::addWolf(){
 
 void Model::changeRocksPosition(){
     for(auto &rock : rock_array)
-        rock.next_position();
-
-    
+        rock.next_position(1./nbr_of_fps);
 }
 
 void Model::removeProjectiles(){
@@ -42,11 +39,14 @@ void Model::removeProjectiles(){
     }
 }
 
-void Model::computeWolfsPosition(){
+void Model::computeWolvesPosition(){
     vector<int> wolf_to_remove;
     int i = 0;
     for(auto &wolf : wolf_array){
         wolf.computeNewPosition(1./nbr_of_fps);
+        //Check wolf status, add index in array containing 
+        //indexes of wolves to remove and increment nbr of pig
+        //eaten if it has reached the mamapig house
         if(wolf.getStatus()==REACHED_HOUSE){
             nbr_of_little_pig_eaten++;
             wolf_to_remove.push_back(i);
@@ -55,26 +55,34 @@ void Model::computeWolfsPosition(){
             wolf_to_remove.push_back(i);
         i++;
     }
+    //Browse index array of wolves to remove in reverse
+    //and erase for each index stored the corresponding
+    //wolf in the wolf_array
+    //We do it reverse to make sure that if 2 wolves
+    //must be removed at the same time, we would not 
+    //move the rest of the array by removing the first wolf
+    //and then try to remove the second one at the stored index
+    //that would not be the good one anymore
     for(i = wolf_to_remove.size(); i>0; i--)
         wolf_array.erase(wolf_array.begin()+wolf_to_remove[i-1]);
+    
+    //Set the status of the game to lost if all pig eaten
     if(nbr_of_little_pig_eaten>=5)
         has_lost = true;
 }
 
 void Model::shotRocks(){
     for (auto &wolf : wolf_array){
-        if (wolf.getPosy() >= 230 && wolf.getReload() >= 90 && wolf.getStatus()==BALLON_FALL){
+        if (wolf.getPosy() >= POSITION_WOLF_START_SHOOTING && wolf.getReload() >= TIME_WOLF_RELOAD && wolf.getStatus()==BALLON_FALL){
             addRock(Rock(wolf.getPosx() + 30, wolf.getPosy()));
             wolf.setReload(0);
         }
         else
             wolf.setReload(wolf.getReload() + 1);
     }
-    // time_last_frame = SDL_GetTicks();
 }
 
-void Model::testCollisionPig()
-{
+void Model::testCollisionPig(){
     for (auto &rock : rock_array){
         if (rock.getPosX() < mama_pig.getPosx() + 30 &&
             rock.getPosX() + rock.getSizex() > mama_pig.getPosx() &&
@@ -85,8 +93,7 @@ void Model::testCollisionPig()
 }
 
 void Model::testCollisionWolf(){
-    for (auto &wolf : wolf_array)
-    {
+    for (auto &wolf : wolf_array){
         if (wolf.getPosx() + 15 < arrow.getPosX() + arrow.getSizex() &&
             wolf.getPosx() + 30 > arrow.getPosX() &&
             wolf.getPosy() - 17 < arrow.getPosY() + arrow.getSizey()&&
@@ -96,11 +103,11 @@ void Model::testCollisionWolf(){
                  wolf.getPosx() + 30 > arrow.getPosX() &&
                  wolf.getPosy() < arrow.getPosY() + arrow.getSizey() &&
                  wolf.getPosy() + 35 > arrow.getPosY()){ 
-                if(arrow.get_meat())
-                    wolf.setStatus(FREE_FALLING);
-                else
-                    arrow.Reload();
-                }
+            if(arrow.get_meat())
+                wolf.setStatus(FREE_FALLING);
+            else
+                arrow.Reload();
+            }
     }
 }
 
@@ -109,5 +116,5 @@ void Model::testArrowMeated(){
         arrow.arrow_meat();
         timing_meat = 0;
         meat_appeared = false;
-        }
+    }
 }

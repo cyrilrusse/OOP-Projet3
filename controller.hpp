@@ -6,7 +6,6 @@
 #include "view.hpp"
 #include "model.hpp"
 #include "character.hpp"
-#include <iostream>
 
 #define NBR_OF_FPS 30
 
@@ -24,17 +23,17 @@ public:
 
     //Access
     bool inGame(){return ingame;}
+    bool gameIsLost(){return model.hasLost();};
 
-    void handleInputs();
     void game();
-    void closeGame();
     void gameOver();
+    void closeGame();
+    void handleInputs();
     void computeObjectsPosition();
     void manageObjects();
-    void manageTiming();
+    void manageMeat();
     void renderObjects();
     void manageRocks();
-    bool gameIsLost(){return model.hasLost();};
 };
 
 #endif

@@ -5,7 +5,7 @@ Character::Character(int x, int y){
     position_y = y;
 }
 
-//Wolf definitions
+//Wolf contructor
 Wolf::Wolf():Character(WOLF_INIT_POS){
     switch ((rand()%5)+1){
     case 1:
@@ -29,6 +29,8 @@ Wolf::Wolf():Character(WOLF_INIT_POS){
 
 void Wolf::computeNewPosition(double time){
     if(status == WALKING){
+        //make switch step variable from 0 to 1
+        //information that will be necessary at rendering
         ++step %= 2;
         position_x += WOLF_VELOCITY * time;
         if(position_x >= falling_pos){
@@ -63,8 +65,7 @@ void Wolf::computeNewPosition(double time){
 
 }
 
-
-//MamaPig definitions
+//MamaPig Constructor
 MamaPig::MamaPig():Character(MAMAPIG_INIT_POS){};
 
 void MamaPig::computeNewPosition(double time){
